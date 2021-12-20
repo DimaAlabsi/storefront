@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { deleteProduct } from "../store/actions";
 import { Button } from "@material-ui/core";
 
+
 const SimpleCart = (props) => {
   return (
     <>
@@ -10,7 +11,6 @@ const SimpleCart = (props) => {
 
     
       <section >
-       
           <ui>
             { props.cart.show&&
             props.cart.cart.map((item, idx) => {
