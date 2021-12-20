@@ -30,3 +30,5 @@ Deployment to a cloud provider (Netlify, Amplify, or GitHub Pages)
 
 
  [redux pull request](https://github.com/DimaAlabsi/storefront/pull/1)
+
+  [combined-reducers pull request](https://github.com/DimaAlabsi/storefront/pull/2)
