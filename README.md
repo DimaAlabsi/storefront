@@ -1,17 +1,19 @@
 # Virtual Store
+
 ## An online shopping portal for a fictional store
 
- ## Author :
- 
- ### Dima Alabsi
+## Author :
 
+### Dima Alabsi
 
--------------------------
+---
+
 ### Description :
+
 #### Our application will power an online storefront that will allow our users to browse our product offerings by category, place items in their shopping cart, and check-out when they are ready to make their purchas
 
+---
 
--------
 The application will be created with the following overall architecture and methodologies
 
 React
@@ -23,12 +25,12 @@ Material UI for layout and styling
 Test Driven Development, using Jest
 Deployment to a cloud provider (Netlify, Amplify, or GitHub Pages)
 
-
 ![uml](img/UML.png)
 
 [URL Page using gh-pages](https://dimaalabsi.github.io/storefront/)
 
+[redux pull request](https://github.com/DimaAlabsi/storefront/pull/1)
 
- [redux pull request](https://github.com/DimaAlabsi/storefront/pull/1)
+[combined-reducers pull request](https://github.com/DimaAlabsi/storefront/pull/2)
 
-  [combined-reducers pull request](https://github.com/DimaAlabsi/storefront/pull/2)
+[thunk pull request](https://github.com/DimaAlabsi/storefront/pull/3)
