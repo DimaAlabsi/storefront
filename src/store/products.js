@@ -37,6 +37,7 @@ let initialState = {
 
             img: 'https://www.muhtwa.com/wp-content/uploads/IMG_1776-2-600x400.jpg',
         },
+        
 
     ],
     activeProduct:[]
@@ -45,43 +46,47 @@ let initialState = {
 
 
 const ReduceProducts = (state = initialState, action) => {
-    const { type, payload } = action;
-  
-    switch (type) {
-      case "ACTIVE":
-       state.activeProduct=state.products.filter(item=>{
-         return (payload===item.category ? item.category:null)
-       })
-       console.log(state.activeProduct);
-        return state;
-  
-  
-      case "ADDPRODUCT":
-        state.activeProduct = state.activeProduct.map((product) => {
-          if (product.name === payload.name) {
-            if (product.inventoryCount > 0) {
-              product.inventoryCount = product.inventoryCount - 1;
-            }
-            return product;
+  const { type, payload } = action;
+
+  switch (type) {
+    case "ACTIVE":
+     state.activeProduct=state.products.filter(item=>{
+       return (payload.toLowerCase()===item.category ? item.category:null)
+     })
+     console.log(state.activeProduct);
+      return state;
+
+
+      case "GET":
+
+        state.products=payload
+        return state
+    case "ADDPRODUCT":
+      state.activeProduct = state.activeProduct.map((product) => {
+        if (product.name === payload.name) {
+          if (product.inventoryCount > 0) {
+            product.inventoryCount = product.inventoryCount - 1;
           }
           return product;
-        });
-        return {...state};
-  
-      case "DELETE":
-        state.activeProduct = state.activeProduct.map((product) => {
-          if (product.name === payload.product.name) {
-            product.inventoryCount = product.inventoryCount + 1;
-  
-            return product;
-          }
+        }
+        return product;
+      });
+      return {...state};
+
+    case "DELETE":
+      state.activeProduct = state.activeProduct.map((product) => {
+        if (product.name === payload.product.name) {
+          product.inventoryCount = product.inventoryCount + 1;
+
           return product;
-        });
-        return {...state};
-  
-      default:
-        return state;
-    }
-  };
-  
-  export default ReduceProducts;
+        }
+        return product;
+      });
+      return {...state};
+
+    default:
+      return state;
+  }
+};
+
+export default ReduceProducts;

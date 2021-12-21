@@ -9,8 +9,9 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { addProduct, inventoryAction } from "../store/actions";
-
+import { addProduct, inventoryAction,getProduct,getData } from "../store/actions";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 const useStyle = makeStyles((theme) => ({
   cardGrid: {
     paddingTop: theme.spacing(8),
@@ -29,29 +30,35 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
+
 const Products = (props) => {
+  const dispatch=useDispatch()
+  useEffect(() => {
+    props.getProduct(dispatch(getData()))
+  }, [props.products])
+  console.log(props.products);
   const classes = useStyle();
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
-        {props.products.map((product) => {
+        {props.products.map((product,idx) => {
           return (
-            <Grid item key={product.name} xs={12} sm={6} md={4}>
+            <Grid item key={product.item} xs={12} sm={6} md={4}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.cardMedia}
-                  image={product.img}
-                  title={product.name}
+                  image={product.image}
+                  title={product.item}
                 />
                 <CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="h5" component="h2">
-                    {product.name}
+                    {product.item}
                   </Typography>
                   <Typography>
                     Category: {product.category} <br />
                     Price: {product.price} Jd <br />
-                    Inventory: {product.inventoryCount}
+                    Inventory: {product.inventory}
                   </Typography>
                 </CardContent>
                 <CardActions>
@@ -62,9 +69,10 @@ const Products = (props) => {
                     size="small"
                     color="primary"
                     onClick={(inventory) => {
-                      if (product.inventoryCount) {
+                      if (product.inventory) {
                         props.addProduct(product);
                         props.inventoryAction(product);
+                       
                       } else {
                         alert("empty item");
                       }
@@ -86,6 +94,6 @@ const mapStateToProps = (state) => ({
   products: state.ReduceProducts.activeProduct,
   activeCategory: state.ReduceCategory.activeCategory,
 });
-const mapDispatchToProps = { addProduct, inventoryAction };
+const mapDispatchToProps = { addProduct, inventoryAction ,getProduct};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
